@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="container">
+    <h1>Hello, {{user.username}}</h1>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Message</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                placeholder="Enter your message here..."></textarea>
+        </div>
+        <div class="form-group row">
+            <div class="col"><button type="submit" class="btn btn-primary btn-block">Send Message</button></div>
+            <div class="col">
+                <span>
+                    <button type="submit" class="btn my_btn btn-primary btn-block"><a style="color: white;"
+                            href="{% url 'contact_new' %}">+ new
+                            contact</a></button>
+                </span>
+            </div>
+        </div>
+    </form>
+    <br>
+    <h1>List of all contacts</h1>
+    <ul class="list-group mt-4">
+        {% for contact in contacts %}
+        <hr>
+        <li class="list-group-item bg-light">{{ contact.name | upper}} || {{ contact.id_number | upper }} ||
+            {{ contact.phone_number }}
+            <br>
+            <button type="button" class="btn btn-danger float-right">
+                <a style="color: white;" href="{% url 'delete_contact' contact.pk %}">Delete</a>
+            </button>
+            <button type="button" class="btn btn-primary float-right mr-4">
+                <a style="color: white;" href="{% url 'edit_contact' contact.pk %}">Edit</a>
+            </button>
+        </li>
+        {% endfor %}
+        <hr>
+    </ul>
+</div>
+{% endblock content %}
