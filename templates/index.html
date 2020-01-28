@@ -3,10 +3,12 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <div class="container">
+    <br>
     <h1>Hello, {{user.username}}</h1>
+    <hr>
     <form action="" method="post">
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Message</label>
+            <label for="exampleFormControlTextarea1"></label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
                 placeholder="Enter your message here..."></textarea>
         </div>
@@ -22,13 +24,12 @@
         </div>
     </form>
     <br>
-    <h1>List of all contacts</h1>
-    <ul class="list-group mt-4">
+    <h2>List of recipents</h2>
+    <ul class="list-group mt-2">
         {% for contact in contacts %}
         <hr>
-        <li class="list-group-item bg-light">{{ contact.name | upper}} || {{ contact.id_number | upper }} ||
-            {{ contact.phone_number }}
-            <br>
+        <li class="list-group-item bg-light">{{ contact.id_number | upper }}
+            
             <button type="button" class="btn btn-danger float-right">
                 <a style="color: white;" href="{% url 'delete_contact' contact.pk %}">Delete</a>
             </button>

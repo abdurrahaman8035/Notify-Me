@@ -3,13 +3,16 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<div class="container">
+<div class="container mt-4">
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <h1>Do you want to delete {{ contact.name }}</h1>
+        <h1>Do you want to delete {{ contact.name }}'s details?</h1>
         <br>
         <button type="submit" class="btn btn-primary">Confirm</button>
+        <span>
+            <button type="submit" class="btn btn-primary"><a style="color: white;" href="{% url 'home' %}">Cancel</a></button>
+        </span>
     </form>
 </div>
 
